@@ -1,0 +1,27 @@
+{
+    "name": "riesjart/http-client",
+    "description": "mattbrown/laracurl",
+    "keywords": [
+		"curl",
+		"laravel",
+		"laracurl",
+		"http"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Riesjart",
+            "email": "reesyard@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.5.9",
+        "mattbrown/laracurl": "2.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Riesjart\\HttpClient\\": "src/"
+        }
+    }
+}
