@@ -45,7 +45,7 @@ class Request extends LaracurlRequest
      *
      * @return $this
      */
-    public function setResponseClass(string $class)
+    public function setResponseClass($class)
     {
         $this->curl->setResponseClass($class);
 
@@ -62,7 +62,7 @@ class Request extends LaracurlRequest
      *
      * @return string
      */
-    public function getAssociatedResponseClass(string $requestClass)
+    public function getAssociatedResponseClass($requestClass)
     {
         return preg_replace('/Request$/', 'Response', $requestClass);
     }
