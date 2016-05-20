@@ -3,18 +3,19 @@
 namespace Riesjart\HttpClient\Json;
 
 use Riesjart\HttpClient\Response as HttpClientResponse;
+use stdClass;
 
 class Response extends HttpClientResponse
 {
     /**
-     * @var string
+     * @var stdClass
      */
-    protected $json;
+    protected $object;
 
     /**
      * @var array
      */
-    protected $jsonAssoc = [];
+    protected $array = [];
     
 
     // =======================================================================//
@@ -32,7 +33,7 @@ class Response extends HttpClientResponse
 
         if(starts_with($contentType, 'application/json')) {
 
-            $this->setJson();
+            $this->decodeJson();
         }
     }
 
@@ -44,10 +45,10 @@ class Response extends HttpClientResponse
     /**
      * @return $this
      */
-    public function setJson()
+    public function decodeJson()
     {
-        $this->json = json_decode($this->body);
-        $this->jsonAssoc = json_decode($this->body, true);
+        $this->object = json_decode($this->body);
+        $this->array = json_decode($this->body, true);
 
         return $this;
     }
@@ -64,7 +65,7 @@ class Response extends HttpClientResponse
      */
     public function get($property)
     {
-        return array_get($this->jsonAssoc, $property);
+        return array_get($this->array, $property);
     }
 
 
@@ -73,8 +74,8 @@ class Response extends HttpClientResponse
      *
      * @return array|string
      */
-    public function getJson($assoc = false)
+    public function getData($assoc = false)
     {
-        return $assoc ? $this->jsonAssoc : $this->json;
+        return $assoc ? $this->array : $this->object;
     }
 }
